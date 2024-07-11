@@ -237,6 +237,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    pass
     cava
     fzf
     vim
