@@ -1,10 +1,4 @@
-{ pkgs, inputs, ... }:
-let
-  finecmdline = pkgs.vimUtils.buildVimPlugin {
-    name = "fine-cmdline";
-    src = inputs.fine-cmdline;
-  };
-in
+{ pkgs, ... }:
 {
   programs = {
     neovim = {
@@ -17,24 +11,29 @@ in
       extraPackages = with pkgs; [
         lua-language-server
         gopls
-        xclip
         wl-clipboard
         luajitPackages.lua-lsp
         nil
         rust-analyzer
-        #nodePackages.bash-language-server
+        # nodePackages.bash-language-server
         yaml-language-server
         pyright
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
-        alpha-nvim
-        auto-session
+        cmp-path
+        nvim-notify
+        noice-nvim
+        which-key-nvim
+        harpoon
+        undotree
+        oil-nvim
+        colorizer
+        startup-nvim
         bufferline-nvim
-        dressing-nvim
+        dressing-nvim # improve ui
         indent-blankline-nvim
-        nui-nvim
-        finecmdline
+        nui-nvim # ui component plugins (a dependencie)
         nvim-treesitter.withAllGrammars
         lualine-nvim
         nvim-autopairs
@@ -49,7 +48,6 @@ in
         friendly-snippets
         lspkind-nvim
         comment-nvim
-        nvim-ts-context-commentstring
         plenary-nvim
         neodev-nvim
         luasnip
@@ -61,14 +59,13 @@ in
       ];
       extraConfig = ''
         set noemoji
-        nnoremap : <cmd>FineCmdline<CR>
       '';
       extraLuaConfig = ''
+        ${builtins.readFile ./nvim/init.lua}
         ${builtins.readFile ./nvim/options.lua}
         ${builtins.readFile ./nvim/keymaps.lua}
-        ${builtins.readFile ./nvim/plugins/alpha.lua}
+        ${builtins.readFile ./nvim/plugins/which-key.lua}
         ${builtins.readFile ./nvim/plugins/autopairs.lua}
-        ${builtins.readFile ./nvim/plugins/auto-session.lua}
         ${builtins.readFile ./nvim/plugins/comment.lua}
         ${builtins.readFile ./nvim/plugins/cmp.lua}
         ${builtins.readFile ./nvim/plugins/lsp.lua}
@@ -76,12 +73,11 @@ in
         ${builtins.readFile ./nvim/plugins/telescope.lua}
         ${builtins.readFile ./nvim/plugins/todo-comments.lua}
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
-        ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
+        ${builtins.readFile ./nvim/plugins/lualine.lua}
+        ${builtins.readFile ./nvim/plugins/noice.lua}
         require("ibl").setup()
         require("bufferline").setup{}
-        require("lualine").setup({
-          icons_enabled = true,
-        })
+        require("startup").setup({theme = "evil"})
       '';
     };
   };

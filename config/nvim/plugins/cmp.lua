@@ -28,7 +28,11 @@ cmp.setup({
     { name = "nvim_lsp" }, -- language servers
     { name = "luasnip" }, -- snippets
     { name = "buffer" }, -- text within current buffer
-    { name = "path" }, -- file system paths
+    { name = "path",
+      option = {
+        trailing_slash = true,
+      }
+    }, -- file system paths
   }),
 
   -- configure lspkind for vs-code like pictograms in completion menu

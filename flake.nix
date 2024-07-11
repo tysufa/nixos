@@ -22,8 +22,10 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "default";
-      username = "zaney";
+      host = "nixOs";
+      username = "tysufa";
+      backgroundImage=/home/${username}/zaneyos/config/backgrounds/static_bg/bg3.jpg;
+      # backgroundImage=/home/${username}/zaneyos/config/backgrounds/wanella/bg.jpg;
     in
     {
       nixosConfigurations = {
@@ -33,6 +35,7 @@
             inherit inputs;
             inherit username;
             inherit host;
+            inherit backgroundImage;
           };
           modules = [
             ./hosts/${host}/config.nix
@@ -43,6 +46,7 @@
                 inherit username;
                 inherit inputs;
                 inherit host;
+                inherit backgroundImage;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

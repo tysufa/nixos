@@ -5,6 +5,7 @@
   inputs,
   pkgs,
   config,
+  backgroundImage,
   ...
 }:
 
@@ -45,12 +46,12 @@ with lib;
           env = MOZ_ENABLE_WAYLAND, 1
           exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = killall -q swww;sleep .5 && swww init
+          exec-once = killall -q swww;sleep .5 && swww-daemon --format xrgb
           exec-once = killall -q waybar;sleep .5 && waybar
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
+          exec-once = sleep 1.5 && swww img ${backgroundImage}
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -63,7 +64,7 @@ with lib;
             col.inactive_border = rgb(${config.stylix.base16Scheme.base01})
           }
           input {
-            kb_layout = us
+            kb_layout = fr
             kb_options = grp:alt_shift_toggle
             kb_options = caps:super
             follow_mouse = 1
@@ -130,20 +131,21 @@ with lib;
             preserve_split = true
           }
           bind = ${modifier},Return,exec,${terminal}
+          bind = ${modifier},D,exec,${terminal}
           bind = ${modifier}SHIFT,Return,exec,rofi-launcher
-          bind = ${modifier}SHIFT,W,exec,web-search
+          bind = ${modifier}SHIFT,F,exec,web-search
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
-          bind = ${modifier},W,exec,${browser}
-          bind = ${modifier},E,exec,emopicker9000
-          bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,discord
+          bind = ${modifier},F,exec,${browser}
+          bind = ${modifier}SHIFT,E,exec,emopicker9000
+          bind = ${modifier}SHIFT,S,exec,screenshootin
+          bind = ${modifier}SHIFT,D,exec,discord
           bind = ${modifier},O,exec,obs
           bind = ${modifier},C,exec,hyprpicker -a
           bind = ${modifier},G,exec,gimp
           bind = ${modifier}SHIFT,G,exec,godot4
-          bind = ${modifier},T,exec,thunar
-          bind = ${modifier},M,exec,spotify
+          bind = ${modifier},E,exec,thunar
+          bind = ${modifier},S,exec,spotify
           bind = ${modifier},Q,killactive,
           bind = ${modifier},P,pseudo,
           bind = ${modifier}SHIFT,I,togglesplit,
@@ -166,28 +168,28 @@ with lib;
           bind = ${modifier},l,movefocus,r
           bind = ${modifier},k,movefocus,u
           bind = ${modifier},j,movefocus,d
-          bind = ${modifier},1,workspace,1
-          bind = ${modifier},2,workspace,2
-          bind = ${modifier},3,workspace,3
-          bind = ${modifier},4,workspace,4
-          bind = ${modifier},5,workspace,5
-          bind = ${modifier},6,workspace,6
-          bind = ${modifier},7,workspace,7
-          bind = ${modifier},8,workspace,8
-          bind = ${modifier},9,workspace,9
-          bind = ${modifier},0,workspace,10
+          bind = ${modifier},code:10,workspace,1
+          bind = ${modifier},code:11,workspace,2
+          bind = ${modifier},code:12,workspace,3
+          bind = ${modifier},code:13,workspace,4
+          bind = ${modifier},code:14,workspace,5
+          bind = ${modifier},code:15,workspace,6
+          bind = ${modifier},code:16,workspace,7
+          bind = ${modifier},code:17,workspace,8
+          bind = ${modifier},code:18,workspace,9
+          bind = ${modifier},code:19,workspace,10
           bind = ${modifier}SHIFT,SPACE,movetoworkspace,special
           bind = ${modifier},SPACE,togglespecialworkspace
-          bind = ${modifier}SHIFT,1,movetoworkspace,1
-          bind = ${modifier}SHIFT,2,movetoworkspace,2
-          bind = ${modifier}SHIFT,3,movetoworkspace,3
-          bind = ${modifier}SHIFT,4,movetoworkspace,4
-          bind = ${modifier}SHIFT,5,movetoworkspace,5
-          bind = ${modifier}SHIFT,6,movetoworkspace,6
-          bind = ${modifier}SHIFT,7,movetoworkspace,7
-          bind = ${modifier}SHIFT,8,movetoworkspace,8
-          bind = ${modifier}SHIFT,9,movetoworkspace,9
-          bind = ${modifier}SHIFT,0,movetoworkspace,10
+          bind = ${modifier}SHIFT,code:10,movetoworkspace,1
+          bind = ${modifier}SHIFT,code:11,movetoworkspace,2
+          bind = ${modifier}SHIFT,code:12,movetoworkspace,3
+          bind = ${modifier}SHIFT,code:13,movetoworkspace,4
+          bind = ${modifier}SHIFT,code:14,movetoworkspace,5
+          bind = ${modifier}SHIFT,code:15,movetoworkspace,6
+          bind = ${modifier}SHIFT,code:16,movetoworkspace,7
+          bind = ${modifier}SHIFT,code:17,movetoworkspace,8
+          bind = ${modifier}SHIFT,code:18,movetoworkspace,9
+          bind = ${modifier}SHIFT,code:19,movetoworkspace,10
           bind = ${modifier}CONTROL,right,workspace,e+1
           bind = ${modifier}CONTROL,left,workspace,e-1
           bind = ${modifier},mouse_down,workspace, e+1
@@ -205,6 +207,7 @@ with lib;
           bind = ,XF86AudioPrev, exec, playerctl previous
           bind = ,XF86MonBrightnessDown,exec,brightnessctl set 5%-
           bind = ,XF86MonBrightnessUp,exec,brightnessctl set +5%
+          bind = ,XF86Keyboard,exec,pkill waybar -SIGUSR1
         ''
       ];
   };
