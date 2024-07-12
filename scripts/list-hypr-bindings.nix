@@ -26,6 +26,9 @@ pkgs.writeShellScriptBin "list-hypr-bindings" ''
   " + F" "Launch Web Browser" "${browser}" \
   " + SHIFT + E" "Launch Emoji Selector" "emopicker9000" \
   " + SHIFT + S" "Take Screenshot" "screenshootin" \
+  " + M" "logout menu" "wlogout" \
+  " + SHIFT + M" "exit hyprland" "exit" \
+  " + SHIFT + L" "lock screen" "hyprlock" \
   " + D" "Launch Discord" "discord" \
   " + E" "Launch New File Browser Window" "thunar" \
   " + S" "Launch Spotify" "spotify" \

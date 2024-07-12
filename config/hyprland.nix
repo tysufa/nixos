@@ -148,6 +148,8 @@ with lib;
           bind = ${modifier}SHIFT,I,togglesplit,
           bind = ${modifier}SHIFT,F,fullscreen,
           bind = ${modifier},V,togglefloating,
+          bind = ${modifier}SHIFT,L,exec,hyprlock
+          bind = ${modifier},M,exec,wlogout
           bind = ${modifier}SHIFT,M,exit,
           bind = ${modifier}SHIFT,left,movewindow,l
           bind = ${modifier}SHIFT,right,movewindow,r

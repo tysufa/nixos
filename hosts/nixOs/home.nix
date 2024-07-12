@@ -133,11 +133,11 @@ in
         };
         listener = [
           {
-            timeout = 900;
+            timeout = 300;
             on-timeout = "hyprlock";
           }
           {
-            timeout = 1200;
+            timeout = 600;
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }
@@ -278,21 +278,21 @@ in
       enable = true;
       settings = {
         general = {
+          ignore_empty_input = true;
           disable_loading_bar = true;
-          grace = 10;
           hide_cursor = true;
           no_fade_in = false;
         };
         background = [
           {
-            path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
-            blur_passes = 3;
-            blur_size = 8;
+            path = "/home/${username}/stow_df/backgrounds/catppuccin/landscapes/forrest.png";
+            blur_passes = 0;
+            blur_size = 7;
           }
         ];
         image = [
           {
-            path = "/home/${username}/.config/face.jpg";
+            path = "/home/${username}/stow_df/backgrounds/catppuccin/os/nix-black-4k.png";
             size = 150;
             border_size = 4;
             border_color = "rgb(0C96F9)";
@@ -304,17 +304,25 @@ in
         ];
         input-field = [
           {
-            size = "200, 50";
+            size = "400, 70";
             position = "0, -80";
             monitor = "";
             dots_center = true;
-            fade_on_empty = false;
             font_color = "rgb(CFE6F4)";
             inner_color = "rgb(657DC2)";
             outer_color = "rgb(0D0E15)";
             outline_thickness = 5;
             placeholder_text = "Password...";
             shadow_passes = 2;
+
+            hide_input = false;
+            bothlock_color = -1;
+            fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
+            fade_timeout = 1000;
+            fade_on_empty = true;
+            check_color = "rgb(204, 136, 34)";
+            fail_color = "rgb(204, 34, 34)";
+            capslock_color = -1;
           }
         ];
       };
