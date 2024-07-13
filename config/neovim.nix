@@ -5,8 +5,7 @@
       enable = true;
       defaultEditor = true;
       viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
+      vimAlias = true; vimdiffAlias = true;
       withNodeJs = true;
       extraPackages = with pkgs; [
         lua-language-server
@@ -21,6 +20,7 @@
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
+        # fidget
         cmp-path
         nvim-notify
         noice-nvim
@@ -63,7 +63,6 @@
       extraLuaConfig = ''
         ${builtins.readFile ./nvim/init.lua}
         ${builtins.readFile ./nvim/options.lua}
-        ${builtins.readFile ./nvim/keymaps.lua}
         ${builtins.readFile ./nvim/plugins/which-key.lua}
         ${builtins.readFile ./nvim/plugins/autopairs.lua}
         ${builtins.readFile ./nvim/plugins/comment.lua}
@@ -75,6 +74,7 @@
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
         ${builtins.readFile ./nvim/plugins/lualine.lua}
         ${builtins.readFile ./nvim/plugins/noice.lua}
+        ${builtins.readFile ./nvim/keymaps.lua}
         require("ibl").setup()
         require("bufferline").setup{}
         require("startup").setup({theme = "evil"})
