@@ -168,6 +168,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    go
     pass
     cava
     fzf
