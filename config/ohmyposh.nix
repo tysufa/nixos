@@ -28,6 +28,11 @@
             foreground = "p:grey";
             background = "transparent";
             template = " {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>";
+            properties = {
+              branch_icon = "";
+              commit_icon = "@";
+              fetch_status = true;
+            };
           }];
         }
         {
