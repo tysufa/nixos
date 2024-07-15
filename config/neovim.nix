@@ -20,7 +20,7 @@
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
-        # fidget
+        fidget-nvim
         cmp-path
         nvim-notify
         noice-nvim
@@ -78,6 +78,7 @@
         require("ibl").setup()
         require("bufferline").setup{}
         require("startup").setup({theme = "evil"})
+        require("fidget").setup{}
       '';
     };
   };
