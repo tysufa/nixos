@@ -5,7 +5,7 @@
       enable = true;
       defaultEditor = true;
       viAlias = true;
-      vimAlias = true; vimdiffAlias = true;
+      # vimAlias = true; vimdiffAlias = true;
       withNodeJs = true;
       extraPackages = with pkgs; [
         lua-language-server
@@ -32,30 +32,26 @@
         startup-nvim
         bufferline-nvim
         dressing-nvim # improve ui
-        indent-blankline-nvim
         nui-nvim # ui component plugins (a dependencie)
         nvim-treesitter.withAllGrammars
         lualine-nvim
         nvim-autopairs
         nvim-web-devicons
         nvim-cmp
-        nvim-surround
         nvim-lspconfig
         cmp-nvim-lsp
-        cmp-buffer
         luasnip
         cmp_luasnip
         friendly-snippets
-        lspkind-nvim
+        lspkind-nvim # add pictograms to neovim built in lsp 
         comment-nvim
-        plenary-nvim
-        neodev-nvim
+        plenary-nvim # collection of neovim functions, a dependencie
+        neodev-nvim # TODO: replace neodev by lazydev since it's more recent and neodev got archived
         luasnip
         telescope-nvim
         todo-comments-nvim
         nvim-tree-lua
-        telescope-fzf-native-nvim
-        vim-tmux-navigator
+        # telescope-fzf-native-nvim
       ];
       extraConfig = ''
         set noemoji
