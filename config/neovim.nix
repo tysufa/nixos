@@ -51,7 +51,7 @@
         telescope-nvim
         todo-comments-nvim
         nvim-tree-lua
-        # telescope-fzf-native-nvim
+        telescope-fzf-native-nvim
       ];
       extraConfig = ''
         set noemoji
@@ -71,7 +71,6 @@
         ${builtins.readFile ./nvim/plugins/lualine.lua}
         ${builtins.readFile ./nvim/plugins/noice.lua}
         ${builtins.readFile ./nvim/keymaps.lua}
-        require("ibl").setup()
         require("bufferline").setup{}
         require("startup").setup({theme = "evil"})
         require("fidget").setup{}
