@@ -56,12 +56,13 @@ fi
 echo "-----"
 
 echo "Cloning & Entering ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git
+git clone https://github.com/tysufa/nixos
+mv nixos zaneyos
 cd zaneyos || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
-git config --global user.name "installer"
-git config --global user.email "installer@gmail.com"
+git config --global user.name "tysufa"
+git config --global user.email "philemon.penot@gmail.com"
 git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
