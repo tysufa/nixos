@@ -55,6 +55,7 @@ with lib;
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
+            sensitivity = 2.0
             gaps_in = 6
             gaps_out = 8
             border_size = 2
