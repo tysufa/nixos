@@ -4,6 +4,8 @@ in pkgs.mkShell {
   packages = [
     (pkgs.python3.withPackages (python-pkgs: [
       python-pkgs.pygame
+      python-pkgs.dbus-python
     ]))
+    pkgs.go
   ];
 }
