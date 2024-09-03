@@ -137,7 +137,7 @@
   };
 
   programs = {
-    hyprland.enable = true;
+    # hyprland.enable = true;
     firefox.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -148,7 +148,7 @@
       enableSSHSupport = true;
     };
     virt-manager.enable = true;
-    steam = {
+    steam = { # TODO: uncomment after resolving update issue
       enable = true;
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
@@ -239,7 +239,6 @@
       noto-fonts-emoji
       noto-fonts-cjk
       font-awesome
-      symbola
       material-icons
     ];
   };
@@ -259,7 +258,6 @@
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
     ];
   };
@@ -352,8 +350,8 @@
   services.blueman.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  # sound.enable = true; # removed temporary because it's supposed to be outdated
+  # hardware.pulseaudio.enable = false; # TODO: verifie that it is really outdated
 
   # Security / Polkit
   security.rtkit.enable = true;
@@ -409,7 +407,7 @@
   # OpenGL
   hardware.opengl = {
     enable = true;
-    driSupport = true;
+    # driSupport = true; # It's apparently a useless option now
     driSupport32Bit = true;
   };
 
