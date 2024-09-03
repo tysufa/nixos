@@ -5,6 +5,7 @@
   username,
   options,
   backgroundImage,
+  inputs,
   ...
 }:
 
@@ -136,6 +137,7 @@
   };
 
   programs = {
+    hyprland.enable = true;
     firefox.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -162,13 +164,19 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
   users = {
     mutableUsers = true;
   };
 
   environment.systemPackages = with pkgs; [
-    go
+    pkgs.libsForQt5.qt5.qtgraphicaleffects
+    where-is-my-sddm-theme
+    ocaml
+    nethack
+    _2048-in-terminal
+    bastet # tetris clone
+    yazi #file explorer inside terminal (with image rendering on kitty)
+    inputs.zen-browser.packages."${system}".default
     pass
     cava
     fzf
@@ -244,7 +252,7 @@
   # Extra Portal Configuration
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    # wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal
@@ -259,12 +267,18 @@
   # Services to start
   services = {
     xserver = {
-      enable = false;
+      enable = true;
+      displayManager.sddm = {
+        enable = false;
+        autoNumlock = true;
+        wayland.enable = true;
+      };
       xkb = {
         layout = "fr";
         variant = "";
       };
     };
+    # displayManager.defaultSession = "hyprland";
     greetd = {
       enable = true;
       vt = 3;

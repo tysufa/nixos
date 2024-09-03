@@ -10,6 +10,7 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
     # This is required for plugin support.
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # hyprland-plugins = {
@@ -24,7 +25,7 @@
       system = "x86_64-linux";
       host = "nixOs";
       username = "tysufa";
-      backgroundImage=/home/${username}/zaneyos/config/backgrounds/static_bg/bg3.jpg;
+      backgroundImage=/home/${username}/zaneyos/config/backgrounds/catppuccin/landscapes/forrest.png;
       # backgroundImage=/home/${username}/zaneyos/config/backgrounds/wanella/bg.jpg;
     in
     {
