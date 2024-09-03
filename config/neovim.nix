@@ -20,6 +20,8 @@
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
+        mini-nvim # dependencie for render-markdown
+        render-markdown
         fidget-nvim
         cmp-path
         nvim-notify
@@ -74,6 +76,7 @@
         require("bufferline").setup{}
         require("startup").setup({theme = "evil"})
         require("fidget").setup{}
+        require("render-markdown").setup{}
       '';
     };
   };
